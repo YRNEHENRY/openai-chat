@@ -1,5 +1,5 @@
 # OpenAI-chat
-This repository is used to test and discover how the openAI library works.
+This repository is used to test and discover how the [openAI library](https://github.com/openai/openai-python) works.
 
 It will be reused for larger projects and is therefore a lightweight tool of only a few lines.
 
