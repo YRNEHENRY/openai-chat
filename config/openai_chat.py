@@ -1,26 +1,12 @@
 import openai
-import importlib
-import subprocess
-
-def check_openai():
-    try:
-        importlib.import_module('openai')
-        print("✅ Necessary packages are installed!")
-    except ModuleNotFoundError:
-        print("⏳ Necessary packages are not installed, we will install it...")
-        try:
-            subprocess.check_call(["pip", "install", "-r", "requirements.txt"])
-            print("✅ The packages were installed successfully!")
-        except subprocess.CalledProcessError:
-            print("❌ Problem encountered trying to install the packages.")
 
 def check_api_key():
     while True:
-        API_KEY = open("API_KEY", 'r').read().strip()
+        API_KEY = open("config/API_KEY", 'r').read().strip()
 
         if API_KEY == "":
             API_KEY = input("Please enter your OpenAI API key: ")
-            with open("API_KEY", 'w') as f:
+            with open("config/API_KEY", 'w') as f:
                 f.write(API_KEY)
 
         openai.api_key = API_KEY
@@ -36,7 +22,7 @@ def check_api_key():
                 break
             except openai.error.AuthenticationError:
                 print("❌ Key not recognized or invalid!")
-                with open("API_KEY", 'w') as f:
+                with open("config/API_KEY", 'w') as f:
                     f.write('')
                 continue
 
