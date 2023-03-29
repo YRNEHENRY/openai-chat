@@ -3,10 +3,6 @@ import sys
 import time
 import asyncio
 
-def erase_last_line():
-    sys.stdout.write('\x1b[1A')  # move cursor up one line
-    sys.stdout.write('\x1b[2K')  # erase the line
-
 def check_api_key():
     while True:
         API_KEY = open("config/API_KEY", 'r').read().strip()
@@ -37,7 +33,7 @@ async def print_slowly(text):
     for char in text:
         print(char, end="", flush=True)
         await asyncio.sleep(0.2)
-    print()
+    
 
 async def gpt3_chat():
     chat_log = []
@@ -49,6 +45,7 @@ async def gpt3_chat():
         else:
             print("ChatGPT:", end='')
             await print_slowly(" Is writing a response...")
+            await remove_line("ChatGPT: Is writing a response...")
 
             chat_log.append({"role": "user", "content": user_message})
             response = openai.ChatCompletion.create(
@@ -57,6 +54,14 @@ async def gpt3_chat():
             )
             assistant_response = response["choices"][0]["message"]["content"]   
 
-            erase_last_line()
-            print(f"ChatGPT: {assistant_response.strip()}")
+            print(f" {assistant_response.strip()}")
             chat_log.append({"role": "assistant", "content": assistant_response.strip()})
+
+
+async def remove_line(line):
+    await asyncio.sleep(3)
+    for i in range(len(line), len("ChatGPT:"), -1):
+        sys.stdout.write("\033[K")
+        sys.stdout.write('\033[1D')
+        sys.stdout.flush()
+        await asyncio.sleep(0.2)
