@@ -36,7 +36,7 @@ def check_api_key():
 async def print_slowly(text):
     for char in text:
         print(char, end="", flush=True)
-        await asyncio.sleep(0.15)
+        await asyncio.sleep(0.2)
     print()
 
 async def gpt3_chat():
@@ -47,8 +47,8 @@ async def gpt3_chat():
         if user_message.lower() == "quit":
             break
         else:
-            print("ChatGPT :", end='')
-            await print_slowly(" Est en train d'écrire...")
+            print("ChatGPT:", end='')
+            await print_slowly(" Is writing a response...")
 
             chat_log.append({"role": "user", "content": user_message})
             response = openai.ChatCompletion.create(
