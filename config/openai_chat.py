@@ -1,4 +1,11 @@
 import openai
+import sys
+import time
+import asyncio
+
+def erase_last_line():
+    sys.stdout.write('\x1b[1A')  # move cursor up one line
+    sys.stdout.write('\x1b[2K')  # erase the line
 
 def check_api_key():
     while True:
@@ -26,7 +33,13 @@ def check_api_key():
                     f.write('')
                 continue
 
-def gpt3_chat():
+async def print_slowly(text):
+    for char in text:
+        print(char, end="", flush=True)
+        await asyncio.sleep(0.15)
+    print()
+
+async def gpt3_chat():
     chat_log = []
 
     while True:
@@ -34,12 +47,16 @@ def gpt3_chat():
         if user_message.lower() == "quit":
             break
         else:
+            print("ChatGPT :", end='')
+            await print_slowly(" Est en train d'écrire...")
+
             chat_log.append({"role": "user", "content": user_message})
             response = openai.ChatCompletion.create(
                 model = "gpt-3.5-turbo", 
                 messages = chat_log
             )
-            assistant_response = response["choices"][0]["message"]["content"]
+            assistant_response = response["choices"][0]["message"]["content"]   
 
-            print(f"ChatGPT:" ,assistant_response.strip("\n").strip())
-            chat_log.append({"role": "assistant", "content": assistant_response.strip("\n").strip()})
+            erase_last_line()
+            print(f"ChatGPT: {assistant_response.strip()}")
+            chat_log.append({"role": "assistant", "content": assistant_response.strip()})
