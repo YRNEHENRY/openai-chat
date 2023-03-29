@@ -4,11 +4,14 @@ This repository is used to test and discover how the [openAI library](https://gi
 It will be reused for larger projects and is therefore a lightweight tool of only a few lines.
 
 # Requirements
-To run this project will only need the openAI library and an account to them.  
-So, you will only need to enter this line in your terminal.
+By launching the run.py file, it will install the necessary packages on its first run.
+
+If the program indicates that a problem was encountered while trying to install the packages, you can run the requirements.txt file.  
+Else, you will only need to enter this line in your terminal.
 
     pip install openai
     
+## API Key
 Once this is done, you will be connected to this [page](https://platform.openai.com).  
 And click on your profile in the upper right corner of the site. This will open a drop down menu and you will then click on "View API Keys".
 
