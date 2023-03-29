@@ -6,7 +6,7 @@ It will be reused for larger projects and is therefore a lightweight tool of onl
 # Requirements
 By launching the run.py file, it will install the necessary packages on its first run.
 
-If the program indicates that a problem was encountered while trying to install the packages, you can run the requirements.txt file.
+If the program indicates that a problem was encountered while trying to install the packages, you can run the requirements.txt file.  
 Else, you will only need to enter this line in your terminal.
 
     pip install openai
