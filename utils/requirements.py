@@ -2,6 +2,9 @@ import importlib
 import subprocess
 
 def check_openai():
+    """
+    Checks if the OpenAI package is installed. If not, it installs it.
+    """
     try:
         importlib.import_module('openai')
         print("✅ Necessary packages are installed!")
