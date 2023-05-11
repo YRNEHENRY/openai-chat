@@ -20,7 +20,7 @@ When you launch the program, the first time it runs it will ask you to encode yo
 
 # How does it work ?
 Every month, you have access to a certain number of tokens on your account. Each prompt will consume a certain number of tokens.  
-We count `$0.002 / 1K tokens`. And you are entitled to `$18 of tokens per month`.
+We count `$0.002 / 1K tokens`. And you are entitled to `$18 of free tokens`.
 
 So don't be afraid to use your tokens.
 
